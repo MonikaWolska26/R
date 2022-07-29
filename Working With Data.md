@@ -1,20 +1,20 @@
 # R
-DATA FRAMES
+DATA FRAMES/n
 
-library(readr)
-library(dplyr)
+library(readr)/n
+library(dplyr)/n
 
-#reading
-read_csv('name.csv')
-#writing
+#reading/n
+read_csv('name.csv')/n
+#writing/n
 write_csv(df,'new_csv_file.csv')
-#limiting view
-head(df,8)
-#summary
-summary()
-# inspecting data frame with pipe
-artists  %>%
-  head()
+#limiting view/n
+head(df,8)/n
+#summary/n
+summary()/n
+# inspecting data frame with pipe/n
+artists  %>%/n
+  head()/n
  
 #selecting columns
 df %>%
