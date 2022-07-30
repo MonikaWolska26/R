@@ -3,7 +3,6 @@
 
 
 # DATA FRAMES
-<!-- toc -->
 
 	library(readr)
 	library(dplyr)
@@ -27,29 +26,29 @@
 ## inspecting data frame with pipe
 
 	artists  %>%
-	head()
+		head()
  
 ## selecting columns
 
 	df %>%
-  	select(column,column)
+  		select(column,column)
 		
 ## excluding columns
 
 	df %>%
-  	select(-column,-column)
+  		select(-column,-column)
 
 ## Filtering Rows with Logic I
 
 	df %>%
-  	filter(column == '...')
+  		filter(column == '...')
 		
 ## Filtering Rows with Logic II
 
 	df %>%
-  	filter(column == 'clogs' | price < 20)
+  		filter(column == 'clogs' | price < 20)
 	df %>%
-  	filter(!(column == red))
+  		filter(!(column == red))
   
 ## Arranging Rows
 asc by default 
@@ -61,24 +60,22 @@ desc:
 ## Adding a Column
 
 	df %>%
-  mutate(column = column * 0.075)
+  		mutate(column = column * 0.075)
 
 ## Adding Multiple Columns
 
 	df %>%
-  mutate(column = column - column, column = TRUE)
+  		mutate(column = column - column, column = TRUE)
 	
 ## Transmute Columns - zostawia tylko nowe utworzone kolumny
 
 	df %>%
-  	transmute(column = column * 0.075,
-            	column = column - column)
+  		transmute(column = column * 0.075, column = column - column)
 							
 ## Rename Columns
 
 	df %>%
-  	rename(old_name = new_name,
-         	old_name = new_name)
+  		rename(old_name = new_name, old_name = new_name)
          
          
 ## take a data frame as an argument and return a vector containing the column names
@@ -109,7 +106,7 @@ desc:
 ## Reshaping your Data
 
 	df %>%
-	gather('Checking','Savings',key='Account Type',value='Amount')
+		gather('Checking','Savings',key='Account Type',value='Amount')
 	
 The arguments you provide are:
 
@@ -121,8 +118,41 @@ The arguments you provide are:
 ## Dealing with Duplicates
 
 	duplicated() - spr czy mamy duplikaty
-	df %>% duplicated() 
+		df %>% duplicated() 
 	df %>%
-  	distinct(item,.keep_all=TRUE)
+  		distinct(item,.keep_all=TRUE)
 		
+## Splitting By Index
+
+	df %>%
+		mutate(column = str_sub(othercoulumn,3,4))
+	3 i 4 are indexes od string
+
+## Splitting By Character
+
+	df %>%
+  		separate(col_to_separate, c('new_col_name_1','new_col_name_2'), 'character_to_split_on', extra ='merge')
+
+- type is the column to split
+- c('user_type','country') is a vector with the names of the two new columns
+- '_' is the character to split on
+
+## Looking at Data Types
+
+structure 
+
+		str()
+	
+## String Parsing
+### Deleting character
+
+	df %>%
+		mutate(column=gsub('\\%','',column))
+
+### Converting column as numeric
+
+	df %>%
+		mutate(column = as.numeric(column))
+		
+# AGGREGATES IN R
 
