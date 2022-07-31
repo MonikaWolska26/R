@@ -167,5 +167,30 @@ structure
 - command is the summary function that is applied to the column by summarize()
 - column_name is the name of the column of df that is being summarized
 
-#### Calculating Aggregate Functions I
+#### Calculating Aggregate Functions
 
+In general, we use the following syntax to calculate aggregates:
+
+	df %>%
+		group_by(column_1) %>%
+		summarize(aggregate_name = command(column_2))
+		
+- column_1 is the column that we want to group_by()
+- column_2 is the column that we want to apply command(), a summary function, to using summarize()
+- aggregate_name is the name assigned to the calculated aggregate
+
+### AGGREGATES IN R
+#### Combining Grouping with Filter
+
+	enrollments %>%
+		group_by(course) %>%
+		filter(mean(quiz_score) < 80)
+		
+#### Combining Grouping with Mutate
+
+	enrollments %>% 
+		group_by(course) %>% 
+		mutate(diff_from_course_mean = 	quiz_score - mean(quiz_score))
+
+- group_by() groups the data frame by course into two groups: learn-r and learn-python
+- mutate() will add a new column diff_from_course_mean which is calculated as the difference between a row’s individual quiz_score and the mean(quiz_score) for that row’s group (course)
